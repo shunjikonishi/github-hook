@@ -3,21 +3,26 @@ package models
 import akka.actor.Actor
 
 class GitHubService(oauthToken: String) extends Actor {
-  println("token: " + oauthToken)
 
   def receive = { 
-    case x: Issue => doIssue(x)
+    case x: IssueMessage => doIssue(x)
+    case x: IssueCommentMessage => doIssueComment(x)
     case x: GitHubMessage => doOther(x)
   }
 
   private def doOther(msg: GitHubMessage) = {
-    println("Unhandle message")
+    println("Unhandled message")
     println(msg)
   }
 
-  private def doIssue(issue: Issue) = {
+  private def doIssue(msg: IssueMessage) = {
     println("!!!!!!!!!!!!! Issue !!!!!!!!!!!!!!!!")
-    println(issue)
+    println(msg)
+  }
+
+  private def doIssueComment(msg: IssueCommentMessage) = {
+    println("!!!!!!!!!!!!! IssueComment !!!!!!!!!!!!!!!!")
+    println(msg.comment)
   }
 
 }

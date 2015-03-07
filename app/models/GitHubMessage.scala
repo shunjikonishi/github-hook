@@ -10,11 +10,15 @@ trait GitHubMessage {
 }
 
 case class DefaultGitHubMessage(name: String, value: JsValue) extends GitHubMessage
-case class Issue(name: String, value: JsValue) extends GitHubMessage
+case class IssueMessage(name: String, value: JsValue) extends GitHubMessage
+case class IssueCommentMessage(name: String, value: JsValue) extends GitHubMessage {
+  def comment = (value \ "comment" \ "body").as[String]
+}
 
 object GitHubMessage {
   def apply(name: String, value: JsValue): GitHubMessage = name match {
-    case "issue" => Issue(name, value)
+    case "issue" => IssueMessage(name, value)
+    case "issue_comment" => IssueCommentMessage(name, value)
     case _ => DefaultGitHubMessage(name, value)
   }
 }
