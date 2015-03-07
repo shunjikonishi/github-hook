@@ -7,6 +7,7 @@ import play.api.libs.json.Json
 import play.api.libs.concurrent.Akka
 import akka.actor.Props
 import models.GitHubService
+import models.GitHubMessage
 
 object Application extends Controller {
 
@@ -17,7 +18,8 @@ object Application extends Controller {
 
   def hook = Action(parse.tolerantJson) { request =>
     val name = request.headers("X-Github-Event")
-    println(name + "\n" + Json.prettyPrint(request.body))
+    val msg = GitHubMessage(name, request.body)
+    gh ! msg
     Ok("OK")
   }
 
