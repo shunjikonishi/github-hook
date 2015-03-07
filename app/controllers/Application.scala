@@ -2,6 +2,7 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import play.api.libs.json.Json
 
 object Application extends Controller {
 
@@ -9,8 +10,9 @@ object Application extends Controller {
     Ok(views.html.index("Your new application is ready."))
   }
 
-  def hook = Action(parse.tolerantText) { request =>
-    println(request.body)
+  def hook = Action(parse.tolerantJson) { request =>
+    val name = request.headers("X-Github-Event")
+    println(name + "\n" + Json.prettyPrint(request.body))
     Ok("OK")
   }
 
