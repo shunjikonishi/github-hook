@@ -6,6 +6,9 @@ import play.api.libs.json.JsValue
 trait GitHubMessage {
   val name: String
   val value: JsValue
+
+  def owner = (value \ "repository" \ "owner" \ "name").as[String]
+  def repo = (value \ "repository" \ "name").as[String]
   override def toString = name + "\n" + Json.prettyPrint(value)
 }
 
