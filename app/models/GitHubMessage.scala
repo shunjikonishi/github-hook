@@ -13,9 +13,15 @@ trait GitHubMessage {
 }
 
 case class DefaultGitHubMessage(name: String, value: JsValue) extends GitHubMessage
+
 case class IssueMessage(name: String, value: JsValue) extends GitHubMessage
+
 case class IssueCommentMessage(name: String, value: JsValue) extends GitHubMessage {
   def comment = (value \ "comment" \ "body").as[String]
+}
+
+case class PullRequestMessage(name: String, value: JsValue) extends GitHubMessage {
+
 }
 
 object GitHubMessage {
