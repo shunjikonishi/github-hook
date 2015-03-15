@@ -2,14 +2,16 @@ package models
 
 import models.actions.ReviewMeAction
 import models.actions.LGTMAction
+import models.actions.LogAction
 
 class ActionManager(actions: Seq[GitHubAction]) {
 
   def get(msg: GitHubMessage) = actions.filter(_.isMatch(msg))
 }
 
-object ActionManager(List(
+object ActionManager extends ActionManager(List(
   new ReviewMeAction(),
-  new LGTMAction()
+  new LGTMAction(),
+  new LogAction()
 ))
 
