@@ -1,13 +1,13 @@
 package models.actions
 
 import models.GitHubAction
-import models.GitHubMessage
+import models.GitHubEvent
 
 class ReviewMeAction extends GitHubAction {
-  def isMatch(msg: GitHubMessage): Boolean = {
+  def isMatch(msg: GitHubEvent): Boolean = {
     msg.name == "issue_comment"
   }
-  def process(msg: GitHubMessage): Unit = {
+  def process(msg: GitHubEvent): Unit = {
 
   }
 }

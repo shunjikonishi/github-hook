@@ -5,10 +5,10 @@ import akka.actor.Actor
 class GitHubService(oauthToken: String, am: ActionManager) extends Actor {
 
   def receive = { 
-    case x: GitHubMessage => doProcess(x)
+    case x: GitHubEvent => doProcess(x)
   }
 
-  private def doProcess(msg: GitHubMessage) = {
+  private def doProcess(msg: GitHubEvent) = {
     am.get(msg).foreach(_.process(msg))
   }
 

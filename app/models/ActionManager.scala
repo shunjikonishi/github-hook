@@ -6,7 +6,7 @@ import models.actions.LogAction
 
 class ActionManager(actions: Seq[GitHubAction]) {
 
-  def get(msg: GitHubMessage) = actions.filter(_.isMatch(msg))
+  def get(msg: GitHubEvent) = actions.filter(_.isMatch(msg))
 }
 
 object ActionManager extends ActionManager(List(
