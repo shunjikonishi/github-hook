@@ -3,6 +3,7 @@ package models
 import models.actions.ReviewMeAction
 import models.actions.LGTMAction
 import models.actions.LogAction
+import github.GitHubEvent
 
 class ActionManager(actions: Seq[GitHubAction]) {
 

@@ -7,8 +7,8 @@ import play.api.libs.json.Json
 import play.api.libs.concurrent.Akka
 import akka.actor.Props
 import models.GitHubService
-import models.GitHubEvent
 import models.ActionManager
+import github.GitHubEvent
 
 object Application extends Controller {
 

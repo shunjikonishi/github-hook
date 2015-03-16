@@ -1,12 +1,13 @@
 package models.actions
 
 import models.GitHubAction
-import models.GitHubEvent
+import github.GitHubAPI
+import github.GitHubEvent
 
 class LogAction extends GitHubAction {
   def isMatch(msg: GitHubEvent): Boolean = true
 
-  def process(msg: GitHubEvent): Unit = {
+  def process(api: GitHubAPI, msg: GitHubEvent): Unit = {
     println(msg)
   }
 }

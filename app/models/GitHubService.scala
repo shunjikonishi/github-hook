@@ -1,6 +1,8 @@
 package models
 
 import akka.actor.Actor
+import github.GitHubAPI
+import github.GitHubEvent
 
 class GitHubService(oauthToken: String, am: ActionManager) extends Actor {
 
@@ -9,7 +11,8 @@ class GitHubService(oauthToken: String, am: ActionManager) extends Actor {
   }
 
   private def doProcess(msg: GitHubEvent) = {
-    am.get(msg).foreach(_.process(msg))
+    val api = GitHubAPI(oauthToken, msg.repository.owner.login, msg.repository.name)
+    am.get(msg).foreach(_.process(api, msg))
   }
 
 }
