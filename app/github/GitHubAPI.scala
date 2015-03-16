@@ -19,7 +19,7 @@ println("API execute: " + url + ", " + body)
       case "DELETE" => ws.delete()
     }
     ret.onSuccess {
-      case res => println("API success: " + res)
+      case res => println("API success: " + res.status + ", " + res.body)
     }
     ret.onFailure {
       case e => 
