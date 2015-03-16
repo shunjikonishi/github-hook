@@ -3,6 +3,7 @@ package github
 import play.api.Play.current
 import play.api.libs.ws._
 import play.api.libs.json._
+import scala.concurrent.ExecutionContext.Implicits.global
 
 case class GitHubAPI(oauthToken: String, owner: String, repo: String) {
   private val baseUrl = s"https://api.githbu.com/$owner/$repo"
@@ -17,7 +18,7 @@ println("API execute: " + url + ", " + body)
       case "POST" => ws.post(body)
       case "DELETE" => ws.delete()
     }
-println("API result: " + ret.get)
+    ret.foreach(println)
   }
 
   def addLabels(number: Long, labels: String*) = {
