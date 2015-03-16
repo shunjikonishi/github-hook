@@ -11,7 +11,7 @@ class GitHubService(oauthToken: String, am: ActionManager) extends Actor {
   }
 
   private def doProcess(msg: GitHubEvent) = {
-    val api = GitHubAPI(oauthToken, msg.repository.owner.login, msg.repository.name)
+    val api = GitHubAPI(oauthToken, msg.repository.owner.name, msg.repository.name)
     am.get(msg).foreach(_.process(api, msg))
   }
 
