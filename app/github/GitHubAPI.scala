@@ -8,14 +8,16 @@ case class GitHubAPI(oauthToken: String, owner: String, repo: String) {
   private val baseUrl = s"https://api.githbu.com/$owner/$repo"
 
   private def exec(method: String, url: String, body: JsValue = JsNull) = {
+println("API execute: " + url + ", " + body)
     val ws = WS.url(url).withHeaders(
       "Authorization" -> ("token " + oauthToken),
       "Content-Type" -> "application/json"
     )
-    method match {
+    val ret = method match {
       case "POST" => ws.post(body)
       case "DELETE" => ws.delete()
     }
+println("API result: " + ret.get)
   }
 
   def addLabels(number: Long, labels: String*) = {
