@@ -1,5 +1,6 @@
 package github
 
+import play.api.Logger
 import play.api.Play.current
 import play.api.libs.ws._
 import play.api.libs.json._
@@ -9,7 +10,7 @@ case class GitHubAPI(oauthToken: String, owner: String, repo: String) {
   private val baseUrl = s"https://api.github.com/repos/$owner/$repo"
 
   private def exec(method: String, url: String, body: JsValue = JsNull) = {
-println("API execute: " + url + ", " + body)
+    Logger.info("API execute: " + url + ", " + body)
     val ws = WS.url(url).withHeaders(
       "Authorization" -> ("token " + oauthToken),
       "Content-Type" -> "application/json"
@@ -19,11 +20,11 @@ println("API execute: " + url + ", " + body)
       case "DELETE" => ws.delete()
     }
     ret.onSuccess {
-      case res => println("API success: " + res.status + ", " + res.body)
+      case res => Logger.info("API success: " + res.status + ", " + res.body)
     }
     ret.onFailure {
       case e => 
-        println("API failure: ")
+        Logger.error("API failure: ")
         e.printStackTrace
     }
   }
