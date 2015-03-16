@@ -6,7 +6,7 @@ import play.api.libs.json._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 case class GitHubAPI(oauthToken: String, owner: String, repo: String) {
-  private val baseUrl = s"https://api.githbu.com/$owner/$repo"
+  private val baseUrl = s"https://api.github.com/$owner/$repo"
 
   private def exec(method: String, url: String, body: JsValue = JsNull) = {
 println("API execute: " + url + ", " + body)
