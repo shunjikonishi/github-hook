@@ -37,7 +37,7 @@ case class GitHubAPI(oauthToken: String, owner: String, repo: String) {
   }
 
   def removeLabel(number: Long, label: String) = {
-    val url = baseUrl + "/issues/" + number + "/labels/" + URLEncoder.encode(label, "utf-8").replaceAll("+", "%20")
+    val url = baseUrl + "/issues/" + number + "/labels/" + URLEncoder.encode(label, "utf-8").replaceAll("\\+", "%20")
     exec("DELETE", url)
   }
 
