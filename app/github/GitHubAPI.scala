@@ -30,11 +30,7 @@ println("API execute: " + url + ", " + body)
 
   def addLabels(number: Long, labels: String*) = {
     val url = baseUrl + "/issues/" + number + "/labels"
-    val body = JsObject(
-      Seq(
-        "labels" -> JsArray(labels.map(JsString(_)))
-      )
-    )
+    val body = JsArray(labels.map(JsString(_)))
     exec("POST", url, body)
   }
 
