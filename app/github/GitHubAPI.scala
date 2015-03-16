@@ -18,7 +18,14 @@ println("API execute: " + url + ", " + body)
       case "POST" => ws.post(body)
       case "DELETE" => ws.delete()
     }
-    ret.foreach(res => println("API result: " + res))
+    ret.onSuccess {
+      case res => println("API success: " + res)
+    }
+    ret.onFailure {
+      case e => 
+        println("API failure: ")
+        e.printStackTrace
+    }
   }
 
   def addLabels(number: Long, labels: String*) = {
