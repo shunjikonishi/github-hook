@@ -12,7 +12,7 @@ object PullRequestAction {
   case object opened      extends PullRequestAction("opened")
   case object closed      extends PullRequestAction("closed")
   case object reopened    extends PullRequestAction("reopened")
-  case object synchronize extends PullRequestAction("syncronize")
+  case object synchronize extends PullRequestAction("synchronize")
 
   val values = Array(
     assigned,
