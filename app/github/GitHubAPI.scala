@@ -5,7 +5,7 @@ import play.api.libs.ws._
 import play.api.libs.json._
 
 case class GitHubAPI(oauthToken: String, owner: String, repo: String) {
-  private val baseUrl = s"https://api.githbu.com/{owner}/{repo}"
+  private val baseUrl = s"https://api.githbu.com/$owner/$repo"
 
   private def exec(method: String, url: String, body: JsValue = JsNull) = {
     val ws = WS.url(url).withHeaders(
