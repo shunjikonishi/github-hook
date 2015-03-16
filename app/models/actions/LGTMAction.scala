@@ -1,13 +1,14 @@
 package models.actions
 
 import models.GitHubAction
-import models.GitHubMessage
+import github.GitHubAPI
+import github.GitHubEvent
 
 class LGTMAction extends GitHubAction {
-  def isMatch(msg: GitHubMessage): Boolean = {
+  def isMatch(msg: GitHubEvent): Boolean = {
     msg.name == "issue_comment"
   }
-  def process(msg: GitHubMessage): Unit = {
+  def process(api: GitHubAPI, msg: GitHubEvent): Unit = {
 
   }
 }

@@ -1,12 +1,14 @@
 package models.actions
 
+import play.api.Logger
 import models.GitHubAction
-import models.GitHubMessage
+import github.GitHubAPI
+import github.GitHubEvent
 
 class LogAction extends GitHubAction {
-  def isMatch(msg: GitHubMessage): Boolean = true
+  def isMatch(msg: GitHubEvent): Boolean = true
 
-  def process(msg: GitHubMessage): Unit = {
-    println(msg)
+  def process(api: GitHubAPI, msg: GitHubEvent): Unit = {
+    Logger.info(msg.toString)
   }
 }
