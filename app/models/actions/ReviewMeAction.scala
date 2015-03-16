@@ -25,7 +25,7 @@ println("test1, " + isPullRequestOpen(msg) + ", " + isIssueComment(msg))
       case x: IssueCommentEvent => (x.comment.body, x.issue.number)
     }
 println("test2, " + text)
-    text.split("\n").map(_.split("\t\\., ")).filter { words =>
+    text.split("\n").map(_.split("[\t\\., ]")).filter { words =>
 println("test3, " + words)
 println("test4, " + words.find(_.startsWith("@")) + ", " + words.find(_.equalsIgnoreCase("review")))
       words.find(_.startsWith("@")).isDefined && 
