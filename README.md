@@ -47,11 +47,11 @@ If the pullrequest comment has a mention and the word 'review', do followings.
 - Set assignee to mentioned user.
 
 ### LGTMAction
-if the pullrequest comment has the word 'LGTM', do followings.
+If the pullrequest comment has the word 'LGTM', do followings.
 
 - Remove a label 'Review me!'.
 - Add a label 'Ship it!'.
 - Set assignee to pullrequest opener.
 
-### License
+## License
 MIT
