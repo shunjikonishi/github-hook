@@ -1,5 +1,6 @@
 package github
 
+import java.net.URLEncoder
 import play.api.Logger
 import play.api.Play.current
 import play.api.libs.ws._
@@ -36,7 +37,7 @@ case class GitHubAPI(oauthToken: String, owner: String, repo: String) {
   }
 
   def removeLabel(number: Long, label: String) = {
-    val url = baseUrl + "/issues/" + number + "/labels/" + label
+    val url = baseUrl + "/issues/" + number + "/labels/" + URLEncoder.encode(label, "utf-8").replaceAll("\\+", "%20")
     exec("DELETE", url)
   }
 
