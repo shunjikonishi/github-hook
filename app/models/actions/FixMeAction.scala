@@ -31,6 +31,7 @@ println("test2: " + fix + ", " + me)
       val assignee = words.find(_.startsWith("@")).map(_.substring(1)).getOrElse(opener)
 println("test3: " + assignee)
       api.addLabels(number, "Fix me!")
+      api.removeLabel(number, "Review me!")
       api.assign(number, assignee)
     }
   }

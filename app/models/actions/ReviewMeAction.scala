@@ -29,6 +29,7 @@ class ReviewMeAction extends GitHubAction {
     }.headOption.foreach { words =>
       val reviewee = words.find(_.startsWith("@")).map(_.substring(1))
       api.addLabels(number, "Review me!")
+      api.removeLabel(number, "Fix me!")
       reviewee.foreach(api.assign(number, _))
     }
   }
