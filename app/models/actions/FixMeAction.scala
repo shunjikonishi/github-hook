@@ -21,7 +21,7 @@ class FixMeAction extends GitHubAction {
       )
     }
 println("test1: " + text)
-    text.split("\n").map(_.split("[\t\\., ]")).filter { words =>
+    text.split("\n").map(_.split("[\t\r\n\\., ]")).filter { words =>
 println("test1.5: [" + words.mkString("***") + "]")
       val fix = words.indexOf("fix")
       val me = words.indexOf("me")
