@@ -20,16 +20,12 @@ class FixMeAction extends GitHubAction {
         x.issue.user.name
       )
     }
-println("test1: " + text)
     text.split("\n").map(_.split("[\t\r\n\\., ]")).filter { words =>
-println("test1.5: [" + words.mkString("***") + "]")
       val fix = words.indexOf("fix")
       val me = words.indexOf("me")
-println("test2: " + fix + ", " + me)
       fix >= 0 && me == fix + 1
     }.headOption.foreach { words =>
       val assignee = words.find(_.startsWith("@")).map(_.substring(1)).getOrElse(opener)
-println("test3: " + assignee)
       api.addLabels(number, "Fix me!")
       api.removeLabel(number, "Review me!")
       api.assign(number, assignee)
