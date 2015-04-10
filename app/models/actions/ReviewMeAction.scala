@@ -23,7 +23,7 @@ class ReviewMeAction extends GitHubAction {
       case x: PullRequestEvent => (x.pull_request.body, x.pull_request.number)
       case x: IssueCommentEvent => (x.comment.body, x.issue.number)
     }
-    text.split("\n").map(_.split("[\t\\., ]")).filter { words =>
+    text.split("\n").map(_.split("[\t\r\n\\., ]")).filter { words =>
       words.find(_.startsWith("@")).isDefined && 
       words.find(_.equalsIgnoreCase("review")).isDefined
     }.headOption.foreach { words =>
